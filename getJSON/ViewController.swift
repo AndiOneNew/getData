@@ -11,7 +11,6 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var textView: UITextView!
     @IBOutlet weak var textField: UITextField!
-    var url = "https://jsonplaceholder.typicode.com/comments?postId="
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,17 +27,12 @@ class ViewController: UIViewController {
     
     
     @IBAction func findIdJSON(_ sender: Any) {
-        getPost()
-        textField.text = ""
+        
+        getPost(url: getAPI())
     }
     
-    func getPost() {
-        textView.text = ""
-        let findPostId = textField.text!
-        url = url + String(findPostId)
-        let url2 = URL(string: url)
-        guard let requestURL = url2 else { return }
-        var request = URLRequest(url: requestURL)
+    func getPost(url : URL) {
+        var request = URLRequest(url: url)
         request.httpMethod = "GET"
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
@@ -48,10 +42,16 @@ class ViewController: UIViewController {
                   error == nil else { return }
             DispatchQueue.main.async { [self] in
                 textView.text = "\(dataString)"
-                print(textView.text)
+                textField.text = ""
             }
         }
         task.resume()
+    }
+    func getAPI() -> URL {
+        let api = "https://jsonplaceholder.typicode.com/"
+        let endpoint = "comments?postId=\(textField.text!)"
+        let url = URL(string: api + endpoint)
+        return url!
     }
 }
 

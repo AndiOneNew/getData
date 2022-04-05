@@ -42,7 +42,7 @@
                                                     <constraint firstAttribute="height" constant="40" id="nzF-k2-6Xl"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits"/>
+                                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                             </textField>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ohD-sO-BAc">
                                                 <rect key="frame" x="44.5" y="80.5" width="80" height="60"/>
